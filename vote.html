@@ -1,0 +1,100 @@
+    <!DOCTYPE html>
+<html>
+<head>
+<script>
+     var clicks_yes = 0;
+     var clicks_no = 0;
+
+ function play() {
+        var audio = document.getElementById("audio");
+        audio.play();
+      }
+
+function startTimer1 (tmr)
+{
+var B1 = document.getElementById ('btn1'); B1.disabled = 1;
+var B2 = document.getElementById ('btn2'); B2.disabled = 1;
+var S = document.getElementById ('mT'); S.innerHTML = tmr;
+ 
+t = setInterval (function ()
+   {
+   var f = function (x) {return (x / 100).toFixed (2).substr (2)}, 
+    d = ':',
+   h = 3.6e3,
+    y = S.innerHTML.split (d), 
+    z = --y [2] + y [0] * h + y [1] * 60;
+ 
+    if (!z) clearInterval (t), B1.disabled = 0; 
+    S.innerHTML = [f (Math.floor (z / h)),
+                   f (Math.floor (z % h / 60)), 
+                   f (z % h % 60)].join (d);
+				   
+	if (!z) clearInterval (t), B2.disabled = 0; 
+    S.innerHTML = [f (Math.floor (z / h)),
+                   f (Math.floor (z % h / 60)), 
+                   f (z % h % 60)].join (d);
+				   
+   }, 1000);
+
+        clicks_yes += 1;
+		play()
+        document.getElementById("demo1").innerHTML = clicks_yes;
+}
+
+function startTimer2 (tmr)
+{
+var B1 = document.getElementById ('btn1'); B1.disabled = 1;
+var B2 = document.getElementById ('btn2'); B2.disabled = 1;
+var S = document.getElementById ('mT'); S.innerHTML = tmr;
+
+t = setInterval (function ()
+   {
+   var f = function (x) {return (x / 100).toFixed (2).substr (2)}, 
+    d = ':',
+   h = 3.6e3,
+    y = S.innerHTML.split (d), 
+    z = --y [2] + y [0] * h + y [1] * 60;
+ 
+    if (!z) clearInterval (t), B1.disabled = 0; 
+    S.innerHTML = [f (Math.floor (z / h)),
+                   f (Math.floor (z % h / 60)), 
+                   f (z % h % 60)].join (d);
+				   
+	if (!z) clearInterval (t), B2.disabled = 0; 
+    S.innerHTML = [f (Math.floor (z / h)),
+                   f (Math.floor (z % h / 60)), 
+                   f (z % h % 60)].join (d);
+				   
+   }, 1000);
+
+        clicks_no += 1;
+		play()
+        document.getElementById("demo2").innerHTML = clicks_no;
+}
+
+
+</script>
+</head>
+<body>
+<img src="logo.png" width="30%">
+
+<p>Диссертация соответствует установленным критериям?</p>
+<p><span id="mT">0</span>
+
+
+ <audio id="audio" src="1.mp3"></audio>
+ 
+<p><button id="btn1" onclick="startTimer1 ('00:00:04')">[ДА]</button></p>
+
+
+<p><button id="btn2" onclick="startTimer2 ('00:00:04')">[НЕТ]</button></p>
+
+
+
+
+<font color="white">[ЗА]-<p id="demo1"></p></font>
+<font color="white">[ПРОТИВ]-<p id="demo2"></p></font>
+
+
+</body>
+</html>
